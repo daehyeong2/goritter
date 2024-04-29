@@ -47,6 +47,7 @@ export const Error = styled.span`
 
 export const Switcher = styled.span`
   font-size: 14px;
+  margin-bottom: 8px;
   a {
     color: #0984e3;
     text-align: left;
@@ -55,3 +56,7 @@ export const Switcher = styled.span`
     }
   }
 `;
+
+export interface ErrorMap {
+  [key: string]: string;
+}

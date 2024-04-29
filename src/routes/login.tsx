@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import {
   Error,
+  ErrorMap,
   Form,
   Input,
   Switcher,
@@ -12,10 +13,6 @@ import {
   Wrapper,
 } from "../components/auth-components";
 import GithubButton from "../components/github-btn";
-
-interface ErrorMap {
-  [key: string]: string;
-}
 
 const errors: ErrorMap = {
   "auth/invalid-login-credentials": "이메일이나 비밀번호가 일치하지 않습니다.",
@@ -85,6 +82,10 @@ const Login = () => {
       <Switcher>
         아직 계정이 없으신가요?{" "}
         <Link to="/create-account">계정을 생성하세요 &rarr;</Link>
+      </Switcher>
+      <Switcher>
+        비밀번호를 잊어버리셨나요?{" "}
+        <Link to="/reset-password">비밀번호를 재설정하세요 &rarr;</Link>
       </Switcher>
       <GithubButton />
     </Wrapper>

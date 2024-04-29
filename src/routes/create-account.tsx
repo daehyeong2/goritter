@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import {
   Error,
+  ErrorMap,
   Form,
   Input,
   Switcher,
@@ -12,10 +13,6 @@ import {
   Wrapper,
 } from "../components/auth-components";
 import GithubButton from "../components/github-btn";
-
-interface ErrorMap {
-  [key: string]: string;
-}
 
 const errors: ErrorMap = {
   "auth/email-already-in-use": "이미 존재하는 이메일입니다.",
