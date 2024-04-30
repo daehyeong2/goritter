@@ -9,7 +9,6 @@ import {
   uploadBytes,
 } from "firebase/storage";
 import React, { useState } from "react";
-import { FirebaseError } from "firebase/app";
 
 const Wrapper = styled.div`
   display: grid;
@@ -115,19 +114,12 @@ const Tweet = ({ username, photo, tweet, userId, id }: ITweet) => {
       await updateDoc(doc(db, `tweets/${id}`), { tweet: editValue });
       if (file) {
         const locationRef = ref(storage, `tweets/${user.uid}/${id}`);
-        deleteObject(locationRef).catch((e: FirebaseError) => {
-          if (e.code === "storage/object-not-found") {
-            return;
-          } else {
-            console.error(e);
-          }
-        });
         const result = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(result.ref);
         await updateDoc(doc(db, `tweets/${id}`), { photo: url });
         setFile(null);
       }
-      await setLastValue(editValue);
+      setLastValue(editValue);
       setEditMode(false);
     } catch (e) {
       console.error(e);
